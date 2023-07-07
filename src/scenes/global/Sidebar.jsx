@@ -1,4 +1,4 @@
-import { MenuOutlined } from "@mui/icons-material";
+import { HomeOutlined, MenuOutlined } from "@mui/icons-material";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import React, { useState } from "react";
 import { Menu, MenuItem, ProSidebar } from "react-pro-sidebar";
@@ -28,7 +28,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 export default function Sidebar() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
   const [selected, setSelected] = useState("Dashboard");
   return (
     <Box
@@ -52,7 +52,7 @@ export default function Sidebar() {
       }}
     >
       <ProSidebar collapsed={isCollapsed}>
-        <Menu>
+        <Menu iconShape="square">
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
             icon={isCollapsed ? <MenuOutlined /> : undefined}
@@ -79,11 +79,15 @@ export default function Sidebar() {
             <Box mb="25px">
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
-                  src="https://wwd.com/wp-content/uploads/2023/06/LADY-95.22-CAMPAIGN-JISOO-Brigitte-Lacombe-3-e1686144261636.jpg"
+                  src="https://wallpaperaccess.com/full/6342237.jpg"
                   alt="jisoo"
                   height="100px"
                   width="100px"
-                  style={{ cursor: "pointer", borderRadius: "50%" }}
+                  style={{
+                    cursor: "pointer",
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                  }}
                 />
               </Box>
               <Box textAlign="center">
@@ -101,6 +105,15 @@ export default function Sidebar() {
               </Box>
             </Box>
           )}
+          <Box paddingLeft={isCollapsed ? undefined : "10%"}>
+            <Item
+              title="Dashboard"
+              to="/"
+              icon={<HomeOutlined />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+          </Box>
         </Menu>
       </ProSidebar>
     </Box>
