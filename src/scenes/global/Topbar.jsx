@@ -1,4 +1,8 @@
-import { DarkMode, Search } from "@mui/icons-material";
+import {
+  DarkModeOutlined,
+  LightModeOutlined,
+  Search,
+} from "@mui/icons-material";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
@@ -25,8 +29,12 @@ export default function Topbar() {
 
       {/* Icons bar */}
       <Box display="flex">
-        <IconButton>
-          <DarkMode />
+        <IconButton onClick={colorMode.toggleColorMode}>
+          {theme.palette.mode === "dark" ? (
+            <DarkModeOutlined />
+          ) : (
+            <LightModeOutlined />
+          )}
         </IconButton>
         <IconButton>
           <NotificationsOutlinedIcon />
