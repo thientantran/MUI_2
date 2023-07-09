@@ -1,4 +1,9 @@
 import { formatDate } from "@fullcalendar/core";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import listPlugin from "@fullcalendar/list";
+import FullCalendar from "@fullcalendar/react";
+import timeGridPlugin from "@fullcalendar/timegrid";
 import {
   Box,
   List,
@@ -81,6 +86,34 @@ export default function Calendar() {
           </List>
         </Box>
         {/* CALENDAR */}
+        <Box flex="1 1 100%" ml="15px">
+          <FullCalendar
+            height="75vh"
+            plugins={[
+              dayGridPlugin,
+              timeGridPlugin,
+              interactionPlugin,
+              listPlugin,
+            ]}
+            headerToolbar={{
+              left: "prev,next today",
+              center: "title",
+              right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
+            }}
+            initialView="dayGridMonth"
+            editable
+            selectable
+            selectMirror
+            dayMaxEvents
+            select={handleDateClick}
+            eventClick={handleEventClick}
+            eventsSet={(events) => setCurrentEvent(events)}
+            initialEvents={[
+              { id: "12315", title: "All-day event", date: "2023-07-14" },
+              { id: "15123", title: "Timed event", date: "2023-07-18" },
+            ]}
+          />
+        </Box>
       </Box>
     </Box>
   );
