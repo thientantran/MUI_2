@@ -1,11 +1,23 @@
+import { useTheme } from "@mui/material";
 import { ResponsivePie } from "@nivo/pie";
 import React from "react";
 
 import { mockPieData as data } from "../data/mockData";
+import { tokens } from "../theme";
 export default function PieChart() {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   return (
     <ResponsivePie
       data={data}
+      theme={{
+        tooltip: {
+          container: {
+            background:
+              theme.palette.mode === "dark" ? colors.grey[700] : undefined,
+          },
+        },
+      }}
       margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
       innerRadius={0.5}
       padAngle={0.7}
@@ -17,7 +29,7 @@ export default function PieChart() {
         modifiers: [["darker", 0.2]],
       }}
       arcLinkLabelsSkipAngle={10}
-      arcLinkLabelsTextColor="#333333"
+      arcLinkLabelsTextColor={colors.grey[100]}
       arcLinkLabelsThickness={2}
       arcLinkLabelsColor={{ from: "color" }}
       arcLabelsRadiusOffset={0.55}
@@ -44,56 +56,6 @@ export default function PieChart() {
           rotation: -45,
           lineWidth: 6,
           spacing: 10,
-        },
-      ]}
-      fill={[
-        {
-          match: {
-            id: "ruby",
-          },
-          id: "dots",
-        },
-        {
-          match: {
-            id: "c",
-          },
-          id: "dots",
-        },
-        {
-          match: {
-            id: "go",
-          },
-          id: "dots",
-        },
-        {
-          match: {
-            id: "python",
-          },
-          id: "dots",
-        },
-        {
-          match: {
-            id: "scala",
-          },
-          id: "lines",
-        },
-        {
-          match: {
-            id: "lisp",
-          },
-          id: "lines",
-        },
-        {
-          match: {
-            id: "elixir",
-          },
-          id: "lines",
-        },
-        {
-          match: {
-            id: "javascript",
-          },
-          id: "lines",
         },
       ]}
       legends={[
