@@ -5,7 +5,8 @@ import React from "react";
 import { mockBarData as data } from "../data/mockData";
 import { tokens } from "../theme";
 
-export default function BarChart() {
+// eslint-disable-next-line react/prop-types
+export default function BarChart({ isDashboard = false }) {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
@@ -37,6 +38,12 @@ export default function BarChart() {
         legends: {
           text: {
             fill: colors.grey[100],
+          },
+        },
+        tooltip: {
+          container: {
+            background:
+              theme.palette.mode === "dark" ? colors.grey[700] : undefined,
           },
         },
       }}
@@ -91,7 +98,7 @@ export default function BarChart() {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "country",
+        legend: isDashboard ? undefined : "country",
         legendPosition: "middle",
         legendOffset: 32,
       }}
@@ -99,7 +106,7 @@ export default function BarChart() {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "food",
+        legend: isDashboard ? undefined : "food",
         legendPosition: "middle",
         legendOffset: -40,
       }}
