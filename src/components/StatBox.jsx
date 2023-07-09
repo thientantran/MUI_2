@@ -1,11 +1,18 @@
+/* eslint-disable react/prop-types */
 import { Box, Typography, useTheme } from "@mui/material";
 import React from "react";
 
 import ProgressCircle from "./ProgressCircle";
 import { tokens } from "../theme";
 
-// eslint-disable-next-line react/prop-types
-export default function StatBox({ title, subtitle, icon, progress, increase }) {
+export default function StatBox({
+  title,
+  subtitle,
+  icon,
+  progress,
+  size,
+  increase,
+}) {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
@@ -22,7 +29,7 @@ export default function StatBox({ title, subtitle, icon, progress, increase }) {
           </Typography>
         </Box>
         <Box>
-          <ProgressCircle progress={progress} />
+          <ProgressCircle progress={progress} size={size} />
         </Box>
       </Box>
       <Box display="flex" justifyContent="space-between" mt="2px">
