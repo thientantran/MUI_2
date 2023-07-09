@@ -5,7 +5,10 @@ import React from "react";
 import { mockLineData as data } from "../data/mockData";
 import { tokens } from "../theme";
 
-export default function LineChart() {
+export default function LineChart({
+  // eslint-disable-next-line react/prop-types
+  isDashboard = false,
+}) {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
@@ -46,6 +49,8 @@ export default function LineChart() {
           },
         },
       }}
+      colors={isDashboard ? { datum: "color" } : { scheme: "nivo" }} // added
+      // datum color sẽ sử dụng color được mình setup trong mock Data
       margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
       xScale={{ type: "point" }}
       yScale={{
@@ -63,15 +68,17 @@ export default function LineChart() {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "transportation",
+        legend: isDashboard ? undefined : "transportation", // added
         legendOffset: 36,
         legendPosition: "middle",
       }}
       axisLeft={{
+        tickValues: 10,
+        // thay đổi số lượng các tick trên trục Y
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "count",
+        legend: isDashboard ? undefined : "count", // added
         legendOffset: -40,
         legendPosition: "middle",
       }}
